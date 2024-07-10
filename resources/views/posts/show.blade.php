@@ -9,17 +9,16 @@
     </head>
 
     <body>
-        <h1>Blog name</h1>
-        <div class='posts'>
-            @foreach ($posts as $post)
-                <div class='post'>
-                    <a href="/posts.{{$post->id}}"><h2 class='title'>{{ $post->title }}</h2></a>
-                    <p class='body'>{{$post->body}}</p>
-                </div>
-            @endforeach
-        </div>
-        <div class='paginate'> 
-            {{$posts->links()}}
-        </div>
+        <h1 class='title'>
+            {{$post->title}}
+        </h1>
+        <div class='content'>
+            <div class='content_post'>
+                 <h3>本文</h3>
+                 <p class='body'>{{$post->body}}</p>
+             </div>
+        <div class='footer'>
+            <a href="/posts">戻る</a>
+        </div>     
     </body>
 </html>
