@@ -13,7 +13,11 @@
         </x-slot>
         <body>
             <h1>show.blade</h1>
-            <div>{{$prompt}}</div>
+            <div style="white-space: pre-line;">{!!$prompt!!}</div>
+            キーワードを取得
+            @foreach($text as $text)
+            <div>{{$text}}</div>
+           @endforeach
             
           {{--  <div>{{$post['departure']}}</div>
            <div>{{$post['destination']}}</div> --}}
