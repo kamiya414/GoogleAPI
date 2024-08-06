@@ -69,7 +69,7 @@ class PostController extends Controller
         $response    = preg_replace( $pattern, $replace, $response );
     // dd($response);
     
-        #「」でキーワードを囲うよう指示。「」の中だけを$txrとして取得
+        #「」でキーワードを囲うよう指示済み。「」の中だけを$txrとして取得
         $txt=preg_match_all('/「(.*?)」/', $response, $matches);
         $txt=$matches[1];
         
