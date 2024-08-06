@@ -32,6 +32,7 @@ class PostController extends Controller
         $prompt=
         "おすすめの旅行の日程を作成してください。
         場所の名前を「」で囲って表示してください。
+        信憑性の高い情報のみ利用して
         テーマ： {$post['theme']}
         誰と： {$post['who']}
         日時:  {$post['starttime']}～ {$post['endtime']}
@@ -42,8 +43,9 @@ class PostController extends Controller
         予算:下限値{$post['minimum']} 円～上限値{$post['max']}円
         出発時刻は{$post['starttime']}
         帰宅時刻は{$post['endtime']}
-        スプレッドシートでタイムスケジュール詳細に
-        おススメのお店やインスタ映えスポットも紹介して
+        
+        タイムスケジュール詳細にお願いします。
+        営業時間や移動時間を考慮して時間はかなり多めに見積もって
         
         
         ";
