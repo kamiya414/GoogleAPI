@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 50);
-            $table->timestamps();
+        Schema::create('boookmarks', function (Blueprint $table) {
+             $table->foreignId('user_id')->constrained('users');   //参照先のテーブル名を
+        $table->foreignId('gemini_id')->constrained('geminies');    //constrainedに記載
+        $table->primary(['user_id', 'gemini_id']);  
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('boookmarks');
     }
 };

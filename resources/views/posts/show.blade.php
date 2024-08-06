@@ -5,29 +5,19 @@
         <title>Blog</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('/css/pagination.css') }}"/>
     </head>
-    <x-app-layout>
+
         <x-slot name="header">
             index
         </x-slot>
-         <body>
-            <h1 class="title">
-                {{ $post->title }}
-            </h1>
-            <div class="content">
-                <div class="content__post">
-                    <h3>本文</h3>
-                    <p>{{ $post->body }}</p>    
-                </div>
-            </div>
-            <div class="edit">
-                <a href="/posts/{{ $post->id }}/edit">edit</a>
-            </div>
-            <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
-            <div class="footer">
-                <a href="/">戻る</a>
-            </div>
+        <body>
+            <h1>show.blade</h1>
+            <div>{{$prompt}}</div>
+            
+          {{--  <div>{{$post['departure']}}</div>
+           <div>{{$post['destination']}}</div> --}}
         </body>
-    </x-app-layout>
+
 </html>
 

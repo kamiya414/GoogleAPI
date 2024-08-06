@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->foreignID('category_id')->constrained();
-            //'category_id'はcategoriesテーブルの'id'を参照する外部キーです
-            //$table->foreignId('category_id')->constrained()->onDelete('cascade');
+        Schema::create('geminies', function (Blueprint $table) {
+            $table->id();
+            $table->text('body');
+            $table->timestamps();
         });
     }
 
@@ -27,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('geminies');
     }
 };

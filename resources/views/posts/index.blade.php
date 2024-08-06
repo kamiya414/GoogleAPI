@@ -12,40 +12,39 @@
             index
         </x-slot>
         <body>
-            <h1>Blog Name</h1>
-            <a href='/posts/create'>[create]</a>
-            <div class='post'>
-                @foreach($posts as $post)
-                    <div class='post'>
-                        <h2 class='title'>
-                            <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
-                        </h2>
-                        <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
-                        <p class='body'>{{ $post->body }}</p>
-                        <!-- actionにはweb.phpで定義したURLを記載　-->
-                        <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <!--Javascriptで削除 -->
-                            <button type="button" onclick="deletePost({{ $post->id }})">delete</button>
-                        </form>
-                    </div>
-                @endforeach
-            </div>
-            <ul class="pagination">
-                {{ $posts->links() }}
-            </ul>
-            <!-- Javascript この位置に書くことで先にCSSを読み込み，速度上がる -->
-            <script>
-                function deletePost(id){
-                    'use strick'
-                    
-                    if(confirm('削除すると復元できません．\n本当に削除しますか？')){
-                        document.getElementById(`form_${id}`).submit();
-                    }
-                }
-            </script>
-            <p>{{ Auth::user()->name }}</p>
+            <h1>index.blade</h1>
+            <form action="/show" method="POST">
+                @csrf
+                <div>テーマ</div>
+                <input name="post[theme]">
+                <div>出発地</div>
+                <input name="post[departure]">
+                 <div>出発時間</div>
+                <input name="post[starttime]" type="datetime-local">
+                <div>目的地</div>
+                <input name="post[destination]" >
+                 <div>帰宅時間</div>
+                <input name="post[endtime]" type="datetime-local">
+                <div>予算</div>
+                <input name="post[minimum]" type="number" placeholder="下限値">円～ <input name="post[max]" type="number" placeholder="上限値">円
+                <div>誰と</div>
+                    <select name="post[who]">
+                        <option value="一人">一人</option>
+                        <option value="家族">家族</option>
+                        <option value="友達">友達</option>
+                        <option value="同僚">同僚</option>
+                        <option value="">指定なし</option>
+                    </select>
+                 
+                 <div>人数</div>
+                <input name="post[num_of_people]" type="number">人
+                <div>移動手段</div>
+                <select name="post[transportation]">
+                    <option value="車">車</option>
+                    <option value="公共機関">公共機関</option>
+                </select>
+                 <button class="w-12 h-12  bg-blue-400 text-lg text-white font-semibold rounded-full hover:bg-blue-500" type ="submit">検索</button>
+            </form>
         </body>
 
 </html>

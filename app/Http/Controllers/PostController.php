@@ -10,53 +10,35 @@ use App\Models\Category;
 
 class PostController extends Controller
 {
-     public function index(Post $post)
+     public function index()
     {
-        return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]);  
+        
+         return view('posts.index');
+        // return view('posts.index')->with(['post' => $post->get]);  
         //getPaginateByLimit()はPost.phpで定義したメソッドです。
         
     }
-    
-    public function show(Post $post)
+    public function show(Request $request)
     {
-        return view('posts.show')->with(['post' => $post]);
-        //'post.show'はpostフォルダ内のshow.blade.php
-        //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
-    }
-    
-    // public function create()
-    // {
-    //     return view('posts.create');
-    // }
-    
-     public function create(Category $category)
-    {
-        return view('posts.create')->with(['categories'=>$category->get()]);
-    }
-    
-  public function store(PostRequest $request, Post $post)
-    {
-    $input = $request['post'];
-    $post->fill($input)->save();
-    return redirect('/posts/' . $post->id);
-    }
-    
-    public function edit(Post $post)
-    {
-        return view('posts.edit')->with(['post' => $post]);
-    }
-    
-    public function update(PostRequest $request, Post $post)
-    {
-          $input_post = $request['post'];
-          $post->fill($input_post)->save();
-          
-          return redirect('/posts/' . $post->id);
-    }
-    
-    public function delete(Post $post)
-    {
-        $post->delete();
-        return redirect('/');
+        $input = $request->all();
+        $post=$input['post'];
+        
+        $prompt=
+        "旅行の概要
+        テーマ： {$post['theme']}
+        誰と： {$post['who']}
+        日時:  {$post['starttime']}～ {$post['endtime']}
+        出発地: {$post['departure']}
+        目的地:{$post['destination']}
+        人数: {$post['num_of_people']}人
+        移動手段: {$post['transportation']}
+        予算:{$post['minimum']} 円～{$post['max']}円
+        出発時刻は{$post['starttime']}
+        帰宅時刻は{$post['endtime']}";
+        
+        
+        return view('posts.show')->with(['prompt' => $prompt]);  
+        //getPaginateByLimit()はPost.phpで定義したメソッドです。
+        
     }
 }
