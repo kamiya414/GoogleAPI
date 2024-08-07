@@ -11,13 +11,14 @@
         <x-slot name="header">
             index
         </x-slot>
-        <body>
+        <body style="background-color:white">
             <h1>show.blade</h1>
-            <div style="white-space: pre-line;">{!!$prompt!!}</div>
-            キーワードを取得
-            @foreach($text as $text)
-            <div>{{$text}}</div>
-           @endforeach
+            <div style="white-space: pre-line; color:blue">{!!$prompt!!}</div> 
+            <!--white-spaceで改行する事ができる-->
+            <div>キーワードを取得</div>
+                @foreach($text as $text)
+                    <div>{{$text}}</div>
+                @endforeach
             
           {{--  <div>{{$post['departure']}}</div>
            <div>{{$post['destination']}}</div> --}}
