@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('maps/map');
-});
+Route::get('/', [PostController::class,'map']);
+Route::get('/posts/create',[PostController::class,'create']);
+Route::get('/posts',[PostController::class,'posts']);
+Route::post('/posts',[PostController::class,'store']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

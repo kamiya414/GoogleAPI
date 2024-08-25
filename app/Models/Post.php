@@ -22,8 +22,5 @@ class Post extends Model
         return $this->belongsTo(Place::class);
     }
     
-    protected $fillable = [
-    'title',
-    'body'
-];
+    
 }
