@@ -3,6 +3,7 @@
 
 <head>
     <a href="/posts/create">投稿</a>
+    <a href="/register">新規登録</a>
     <link rel="stylesheet" type="text/css" href="{{ asset('/build/assets/map-CN376zLE.css') }}"> 
 </head>
 
@@ -19,3 +20,4 @@
             <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config("services.google-map.apikey") }}&callback=initAutocomplete&libraries=places&v=weekly"defer></script>
         </div>
     </body>
+    
