@@ -9,6 +9,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 </head>  
 
+
 <body>
     <form action="/posts" method="POST" enctype="multipart/form-data">
         @csrf
@@ -30,7 +31,13 @@
         <!-- 場所入力フォーム -->
         <div class="place">
             <h2>場所</h2>
-            <p>外部apiを理解してから</p>
+            <select name="post[place_id]">
+                  @foreach($places as $place)
+                    <option value={{ $place->id }}>
+                      {{ $place->prefecture }}：{{ $place->area }}
+                    </option>
+                  @endforeach
+            </select>
         </div>
         
         <!-- カテゴリーフォーム -->
