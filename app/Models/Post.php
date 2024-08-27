@@ -22,5 +22,7 @@ class Post extends Model
         return $this->belongsTo(Place::class);
     }
     
-    
+    public function getByLimit(int $limit_count = 2){
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
 }
