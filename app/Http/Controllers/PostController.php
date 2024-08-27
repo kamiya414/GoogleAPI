@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 use App\Models\Post;
-use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Place;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     //
-    public function map(){
-        return view('maps.map');
+    public function map(Post $post){
+        return view('maps.map')->with(['posts'=>$post->getBylimit()]);
     }
     
     public function create(Category $category,  Place $place){
@@ -21,6 +21,10 @@ class PostController extends Controller
     
     public function posts(){
         return view('maps.map');
+    }
+    
+    public function show(Post $post){
+         return view('posts.show')->with(['post'=>$post]);
     }
     
     public function store(PostRequest $request){
@@ -33,15 +37,15 @@ class PostController extends Controller
         $post->comment = $input_post['comment'];
         $post->user_id = Auth::id();
         $post->place_id = $input_post['place_id'];
-        //写真をstorage/uploadに保存、場所のurlを作成
-        $image_url=$request->file('image')->storeAs('public/upload',$post->id.".jpg");
+        //写真をstorage/uploadに保存、場所のurlを作成 やり方がわからない　相談事項
+        $image_url=$request->file('image')->storeAs('public/upload',3 .".jpg");
         //写真のurlをDBに保存
-        $post->image=$image_url;
+        $post->image=str_replace('public/', 'storage/',$image_url);
         $post->save();
         //カテゴリーの処理
         $input_categories=$request->categories_array;
         $post->categories()->attach($input_categories);
         //リダイレクト 後で書き直すこと('/posts/'.$post->id)
-        return redirect('/'); 
+        return redirect('/posts/' . $post->id); 
     }
 }

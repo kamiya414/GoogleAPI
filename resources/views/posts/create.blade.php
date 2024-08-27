@@ -41,16 +41,21 @@
         </div>
         
         <!-- カテゴリーフォーム -->
-        @foreach($categories as $category)
-
+        <div class="category">
+            <h2>カテゴリー</h2>
+            
+            @foreach($categories as $category)
+            
             <label>
-                {{-- valueを'$subjectのid'に、nameを'配列名[]'に --}}
-                <input type="checkbox" value="{{ $category->id }}" name="categories_array[]">
-                    {{$category->name}}
-                </input>
+                    {{-- valueを'$subjectのid'に、nameを'配列名[]'に --}}
+                    <input type="checkbox" value="{{ $category->id }}" name="categories_array[]">
+                        {{$category->name}}
+                    </input>
             </label>
             
-        @endforeach  
+        @endforeach 
+        
+        </div>
         <!-- コメントフォーム -->
         <div class="comment">
             <h2>コメント</h2>

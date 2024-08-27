@@ -19,8 +19,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/', [PostController::class,'map'])->name('map');
-Route::get('/posts/create',[PostController::class,'create'])->name('create')->middleware(['auth']);
 Route::get('/posts',[PostController::class,'posts'])->name('posts');
+Route::get('/posts/create',[PostController::class,'create'])->name('create')->middleware(['auth']);
+Route::get('/posts/{post}', [PostController::class,'show'])->name('show');
 Route::post('/posts',[PostController::class,'store'])->name('store');
 
 
