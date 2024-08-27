@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     //
+    public function test(){
+        return view('maps.test');
+    }
+    
     public function map(Post $post){
         return view('maps.map')->with(['posts'=>$post->getBylimit()]);
     }
