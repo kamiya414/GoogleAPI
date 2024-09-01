@@ -14,10 +14,12 @@ class PostController extends Controller
         return view('maps.test');
     }
     
+
     public function detail(){
         return view('maps.detail');
     }
     
+
     public function map(Post $post){
         return view('maps.map')->with(['posts'=>$post->getBylimit()]);
     }

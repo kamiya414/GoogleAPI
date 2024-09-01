@@ -1,4 +1,5 @@
 <body>
+
 <form>
     <select id = "category">
       <option value="神社">神社</option>
@@ -37,6 +38,7 @@ function initMap() {
 
  //検索場所を調べる
 
+
 function getPlaces(){
   
   //結果表示クリア
@@ -46,7 +48,7 @@ function getPlaces(){
   
   //入力した検索場所を取得
   var addressInput = document.getElementById("addressInput").value;
-  
+
   if (addressInput == "") {
     return;
   }
@@ -54,7 +56,9 @@ function getPlaces(){
   //検索場所の位置情報を取得
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode(
+
   {
+
       address: addressInput
     },
     function(results, status) {
@@ -67,6 +71,7 @@ function getPlaces(){
       }
     });
 
+
 }
 
 //地図情報の変更及び検索情報から周囲の寺院の情報を検索
@@ -77,21 +82,26 @@ function startNearbySearch(latLng){
   //地図情報の変更
   map.setCenter(latLng);
   map.setZoom(13);
+
   
   //PlacesServiceインスタンス生成
   var service = new google.maps.places.PlacesService(map);
-  
+ 
   let category = document.getElementById("category").value;
+
   //周辺検索
   service.nearbySearch(
     {
       location: latLng,
+
       radius: 3000,
       keyword: category,
+
       language: 'ja'
     },
     displayResults
   );
+
   
 }
 
@@ -101,10 +111,12 @@ function startNearbySearch(latLng){
 function displayResults(results, status) {
     
 
+
     
   if(status == google.maps.places.PlacesServiceStatus.OK) {
   
     //検索結果をplacesList配列に連結
+
     placesList = results;
     
     
@@ -114,10 +126,12 @@ function displayResults(results, status) {
         if(a.user_ratings_total < b.user_ratings_total) return 1;
         return 0;
       });
+
       
       //placesList配列をループして、
       //結果表示のHTMLタグを組み立てる
       var resultHTML = "<ol>";
+
     
       
       for (var i = 0; i < 10; i++) {
@@ -161,6 +175,7 @@ function displayResults(results, status) {
         resultHTML += "</li>";
         
         
+
       }
       
       resultHTML += "</ol>";
