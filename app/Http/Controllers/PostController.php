@@ -14,6 +14,12 @@ class PostController extends Controller
         return view('maps.test');
     }
     
+
+    public function detail(){
+        return view('maps.detail');
+    }
+    
+
     public function map(Post $post){
         return view('maps.map')->with(['posts'=>$post->getBylimit()]);
     }
@@ -41,6 +47,7 @@ class PostController extends Controller
         $post->comment = $input_post['comment'];
         $post->user_id = Auth::id();
         $post->place_id = $input_post['place_id'];
+        
         //写真をstorage/uploadに保存、場所のurlを作成 やり方がわからない　相談事項
         $image_url=$request->file('image')->storeAs('public/upload',3 .".jpg");
         //写真のurlをDBに保存
