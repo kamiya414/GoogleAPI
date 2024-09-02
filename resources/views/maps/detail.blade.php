@@ -1,6 +1,7 @@
 <body>
     <div>
-        <h1>{{ $templeName = request()->query('name') }}</h1>
+        <h1>{{ request()->query('name') }}</h1>
+        <img id = "photo">
     </div>
     <div>
         <form>
@@ -78,18 +79,21 @@
                 console.error("位置情報の取得に失敗しました: " + error.message);
             });
             
-        //レビューの取得
+        //レビューと写真の取得
         var service = new google.maps.places.PlacesService(map);
 
         var request = {
           placeId: templeid, 
-          fields:['reviews']
+          fields:['reviews','photos']
         };
         var reviewHTML = "";
         service.getDetails(request, function(place, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
-          var reviews= place.reviews;
-          console.log(reviews);
+          var reviews = place.reviews;
+          //写真の表示
+          var photo = place.photos;
+          const photoUrl = photo[0].getUrl({maxWidth: 750, maxHeight: 600});
+          document.getElementById("photo").src = photoUrl;
           //reviewsにある要素をループさせる
             place.reviews.forEach(function(review) {
               reviewHTML += "<p>評価" + review.rating + "</p>";
