@@ -143,6 +143,12 @@ return [
         'driver' => 'file',
         // 'store' => 'redis',
     ],
+    
+    'providers' => [
+    
+    CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class, //この行を追加
+    
+    ],
 
     /*
     |--------------------------------------------------------------------------

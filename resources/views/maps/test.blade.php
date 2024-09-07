@@ -54,7 +54,7 @@ fetch('https://opendata.resas-portal.go.jp/api/v1/prefectures', {
     let prefectureSelect = document.getElementById('prefecture');
 
     // 都道府県のオプションを追加
-    prefectures.forEach(prefecture => {
+    prefectures.forEach(function(prefecture){
         const option = document.createElement('option');
         option.value = prefecture.prefCode;
         option.textContent = prefecture.prefName;

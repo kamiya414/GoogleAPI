@@ -15,6 +15,7 @@
     </div>
     <div id="mapArea" style="width:700px; height:400px;"></div>
     <div id = "routeInform"></div>
+    <a href = "\maps\navi?lat={{ request()->query('lat') }}&lng={{ request()->query('lng') }}&name={{ request()->query('name') }}">公共交通機関でのルート検索はこちら</a>
     <h3>Google map レビュー</h3>
     <div id="templeReview"></div>
   </body>
@@ -51,9 +52,7 @@
     　  });
         
         // ユーザーの現在位置を取得
-        navigator.geolocation.getCurrentPosition(
-            // 位置情報の取得に成功した場合
-            function(position) {
+        navigator.geolocation.getCurrentPosition(function(position) {
                 // 緯度・経度を変数に格納
                 var currentLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 // ユーザーの位置にマーカーを表示
@@ -68,7 +67,7 @@
                   infoWindow.open(map, startMarker);
                 });
                 
-                //route()関数に数値を渡す
+                //routeSearch()関数に数値を渡す
                 let currentLat = parseFloat(position.coords.latitude);
                 let currentLng = parseFloat(position.coords.longitude);
                 
@@ -130,11 +129,16 @@
                     map: map,
                     position: location
                 });
-                    
+                  
+                var autocompletePhoto = place.photos;
+                console.log(autocompletePhoto);
+                const autocompletePhotoUrl = autocompletePhoto[0].getUrl({maxWidth: 200, maxHeight: 150});  
+                console.log(autocompletePhotoUrl);  
                 // マーカーの吹き出しを追加
                 var infoWindow = new google.maps.InfoWindow();
                 google.maps.event.addListener(startMarker, 'click', function() {
-                    var markerContent = "<strong>" + place.formatted_address + "</strong>"
+                    var markerContent = "<strong>" + place.formatted_address + "</strong><br/>"+
+                                        "<img src=" + autocompletePhotoUrl + "/>"
                     infoWindow.setContent(markerContent);
                     infoWindow.open(map, startMarker);
                 });
