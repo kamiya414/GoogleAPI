@@ -14,6 +14,14 @@ class PostController extends Controller
         return view('maps.test');
     }
     
+    public function route(){
+        return view('maps.route');
+    }
+    
+     public function navi(){
+        return view('maps.navi');
+    }
+    
 
     public function detail(){
         return view('maps.detail');

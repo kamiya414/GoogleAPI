@@ -21,6 +21,7 @@ Route::get('/dashboard', function () {
 
  //Route::get('/', [PostController::class,'map'])->name('map');
 Route::get('/', [PostController::class,'test'])->name('test');
+Route::get('/maps/navi', [PostController::class,'navi'])->name('navi');
 Route::get('/maps/detail', [PostController::class,'detail'])->name('detail');
 
 Route::get('/posts',[PostController::class,'posts'])->name('posts');
